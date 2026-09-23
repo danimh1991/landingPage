@@ -3,6 +3,7 @@ package com.danieta.app;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -135,7 +136,8 @@ public final class MainActivity extends Activity {
             settings.setSafeBrowsingEnabled(true);
         }
 
-        WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG);
+        boolean isDebuggable = (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        WebView.setWebContentsDebuggingEnabled(isDebuggable);
         webView.setWebViewClient(new DanietaWebViewClient());
     }
 
