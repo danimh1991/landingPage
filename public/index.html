@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Acceso a las aplicaciones de danieta.com."
+    />
+    <meta name="theme-color" content="#123d37" />
+    <title>danieta.com</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23123d37'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23f7e9c6' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23d88931'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17312e;
+        --muted: #64736f;
+        --paper: #f4f2ea;
+        --card: #fffefa;
+        --green: #123d37;
+        --green-light: #dce9e4;
+        --orange: #d88931;
+        --line: rgba(23, 49, 46, 0.14);
+        --shadow: 0 22px 65px rgba(25, 53, 49, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-width: 320px;
+        background: var(--paper);
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 15% 5%, rgba(216, 137, 49, 0.13), transparent 29rem),
+          radial-gradient(circle at 90% 92%, rgba(18, 61, 55, 0.12), transparent 34rem),
+          var(--paper);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 16px;
+      }
+
+      .page {
+        width: min(1080px, calc(100% - 40px));
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 32px 0;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        width: fit-content;
+        color: var(--green);
+        font-weight: 760;
+        letter-spacing: -0.02em;
+      }
+
+      .brand-mark {
+        width: 31px;
+        height: 31px;
+        border-radius: 10px;
+        background: var(--green);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+        display: grid;
+        place-items: center;
+      }
+
+      .brand-mark::after {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border: 2px solid #f7e9c6;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 3px var(--green);
+        background: var(--orange);
+      }
+
+      main {
+        align-self: center;
+        padding: 72px 0;
+      }
+
+      .eyebrow {
+        margin: 0 0 13px;
+        color: var(--orange);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 700px;
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.7rem, 7vw, 5.4rem);
+        font-weight: 400;
+        letter-spacing: -0.055em;
+        line-height: 0.97;
+      }
+
+      .intro {
+        max-width: 570px;
+        margin: 24px 0 42px;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        line-height: 1.65;
+      }
+
+      .apps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        gap: 18px;
+      }
+
+      .app-card {
+        min-height: 210px;
+        padding: 28px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        color: var(--ink);
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        text-decoration: none;
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      .app-card::after {
+        content: "";
+        width: 155px;
+        height: 155px;
+        position: absolute;
+        right: -60px;
+        bottom: -66px;
+        border: 25px solid var(--green-light);
+        border-radius: 50%;
+        opacity: 0.72;
+      }
+
+      .app-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(18, 61, 55, 0.34);
+        box-shadow: 0 28px 80px rgba(25, 53, 49, 0.17);
+      }
+
+      .app-card:focus-visible {
+        outline: 3px solid var(--orange);
+        outline-offset: 4px;
+      }
+
+      .app-icon {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        color: white;
+        background: var(--green);
+        border-radius: 17px;
+      }
+
+      .app-icon svg {
+        width: 29px;
+        height: 29px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.8;
+      }
+
+      .app-copy {
+        position: relative;
+        z-index: 1;
+      }
+
+      .app-title-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .app-title {
+        margin: 26px 0 6px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.65rem;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+      }
+
+      .arrow {
+        margin-top: 22px;
+        color: var(--orange);
+        font-size: 1.4rem;
+        transition: transform 180ms ease;
+      }
+
+      .app-card:hover .arrow {
+        transform: translateX(4px);
+      }
+
+      .app-description {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      footer {
+        padding-top: 26px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      @media (min-width: 760px) {
+        .apps {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .app-card {
+          grid-column: span 1;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .page {
+          width: min(100% - 28px, 1080px);
+          padding: 22px 0;
+        }
+
+        main {
+          padding: 58px 0;
+        }
+
+        .intro {
+          margin-bottom: 32px;
+        }
+
+        .app-card {
+          min-height: 200px;
+          padding: 23px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .app-card,
+        .arrow {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand" aria-label="danieta.com">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>danieta.com</span>
+        </div>
+      </header>
+
+      <main>
+        <p class="eyebrow">Un lugar para cada proyecto</p>
+        <h1>¿Dónde quieres ir?</h1>
+        <p class="intro">
+          Accede a las aplicaciones y espacios de danieta.com.
+        </p>
+
+        <nav class="apps" aria-label="Aplicaciones">
+          <!-- Para añadir otra plataforma, duplica este enlace y cambia icono, texto y destino. -->
+          <a class="app-card" href="/alamesa/">
+            <span class="app-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3v7" />
+                <path d="M4.5 3v5.2A1.8 1.8 0 0 0 6.3 10h1.4a1.8 1.8 0 0 0 1.8-1.8V3" />
+                <path d="M7 10v11" />
+                <path d="M15 3v18" />
+                <path d="M15 3c3 1.4 4.5 4.2 4.5 7.2H15" />
+              </svg>
+            </span>
+            <span class="app-copy">
+              <span class="app-title-row">
+                <span class="app-title">A la mesa</span>
+                <span class="arrow" aria-hidden="true">→</span>
+              </span>
+              <span class="app-description">Menús, recetas y lista de la compra.</span>
+            </span>
+          </a>
+        </nav>
+      </main>
+
+      <footer>Un acceso sencillo a tus proyectos.</footer>
+    </div>
+  </body>
+</html>
