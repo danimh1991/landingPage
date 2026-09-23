@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">danieta</string>
+    <string name="connection_error_title">No se puede abrir danieta.com</string>
+    <string name="connection_error_message">Comprueba la conexión a internet y vuelve a intentarlo.</string>
+    <string name="retry">Reintentar</string>
+</resources>
