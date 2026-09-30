@@ -140,6 +140,10 @@
         transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
       }
 
+      .app-card--gymtracker {
+        grid-column: 1;
+      }
+
       .app-card::after {
         content: "";
         width: 155px;
@@ -300,6 +304,27 @@
                 <span class="arrow" aria-hidden="true">→</span>
               </span>
               <span class="app-description">Menús, recetas y lista de la compra.</span>
+            </span>
+          </a>
+
+          <a class="app-card app-card--gymtracker" href="/gymtracker/">
+            <span class="app-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M6.5 7.5v9" />
+                <path d="M3.5 9.5v5" />
+                <path d="M17.5 7.5v9" />
+                <path d="M20.5 9.5v5" />
+                <path d="M6.5 12h11" />
+                <path d="M2 12h1.5" />
+                <path d="M20.5 12H22" />
+              </svg>
+            </span>
+            <span class="app-copy">
+              <span class="app-title-row">
+                <span class="app-title">GymTracker</span>
+                <span class="arrow" aria-hidden="true">→</span>
+              </span>
+              <span class="app-description">Entrenamientos, rutinas y progreso.</span>
             </span>
           </a>
         </nav>
