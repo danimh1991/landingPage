@@ -118,48 +118,88 @@
       .apps {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-        gap: 18px;
+        gap: 20px;
       }
 
       .app-card {
-        min-height: 210px;
+        --card-ink: var(--ink);
+        --card-muted: var(--muted);
+        --card-accent: var(--otter);
+        min-height: 300px;
         padding: 28px;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         overflow: hidden;
-        color: var(--ink);
-        background:
-          linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 254, 250, 0.98)),
-          var(--card);
-        border: 1px solid var(--line);
-        border-radius: 22px;
+        isolation: isolate;
+        color: var(--card-ink);
+        border: 1px solid rgba(23, 52, 58, 0.12);
+        border-radius: 26px;
         box-shadow: var(--shadow);
         text-decoration: none;
         transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
       }
 
-      .app-card--gymtracker {
-        grid-column: 1;
+      .app-card--table {
+        background:
+          linear-gradient(rgba(156, 67, 37, 0.065) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(156, 67, 37, 0.065) 1px, transparent 1px),
+          linear-gradient(145deg, #fffaf0 0%, #f5e4c8 100%);
+        background-size: 24px 24px, 24px 24px, auto;
       }
 
-      .app-card::after {
+      .app-card--table::after {
         content: "";
-        width: 155px;
-        height: 155px;
+        width: 190px;
+        height: 190px;
         position: absolute;
-        right: -60px;
-        bottom: -66px;
-        border: 25px solid var(--river-light);
+        right: -35px;
+        top: -42px;
+        border: 28px solid rgba(255, 255, 255, 0.72);
         border-radius: 50%;
-        opacity: 0.72;
+        box-shadow:
+          0 0 0 2px rgba(152, 75, 20, 0.12),
+          0 18px 35px rgba(111, 55, 22, 0.12);
+        z-index: -1;
+      }
+
+      .app-card--gymtracker {
+        --card-ink: #f8fbf7;
+        --card-muted: rgba(248, 251, 247, 0.7);
+        --card-accent: #c8ef70;
+        background:
+          linear-gradient(115deg, transparent 58%, rgba(200, 239, 112, 0.08) 58% 60%, transparent 60%),
+          linear-gradient(145deg, #163c42 0%, #0a282e 100%);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .app-card--gymtracker::after {
+        content: "";
+        width: 220px;
+        height: 220px;
+        position: absolute;
+        right: -70px;
+        top: -78px;
+        border: 1px solid rgba(200, 239, 112, 0.2);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 34px rgba(200, 239, 112, 0.035),
+          0 0 0 68px rgba(200, 239, 112, 0.025);
+        z-index: -1;
       }
 
       .app-card:hover {
         transform: translateY(-4px);
-        border-color: rgba(18, 63, 70, 0.34);
         box-shadow: 0 28px 80px rgba(18, 63, 70, 0.17);
+      }
+
+      .app-card--table:hover {
+        border-color: rgba(152, 75, 20, 0.38);
+      }
+
+      .app-card--gymtracker:hover {
+        border-color: rgba(200, 239, 112, 0.5);
       }
 
       .app-card:focus-visible {
@@ -168,13 +208,23 @@
       }
 
       .app-icon {
-        width: 58px;
-        height: 58px;
+        width: 52px;
+        height: 52px;
         display: grid;
         place-items: center;
         color: white;
-        background: var(--river);
-        border-radius: 17px;
+        border-radius: 16px;
+        box-shadow: 0 10px 24px rgba(18, 63, 70, 0.14);
+      }
+
+      .app-card--table .app-icon {
+        background: #a34e24;
+      }
+
+      .app-card--gymtracker .app-icon {
+        color: #17343a;
+        background: var(--card-accent);
+        box-shadow: 0 10px 28px rgba(200, 239, 112, 0.16);
       }
 
       .app-icon svg {
@@ -192,6 +242,16 @@
         z-index: 1;
       }
 
+      .app-kicker {
+        display: block;
+        margin-bottom: 9px;
+        color: var(--card-accent);
+        font-size: 0.73rem;
+        font-weight: 850;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
       .app-title-row {
         display: flex;
         align-items: center;
@@ -199,28 +259,46 @@
       }
 
       .app-title {
-        margin: 26px 0 6px;
+        margin: 0 0 7px;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 1.65rem;
+        font-size: clamp(1.75rem, 3vw, 2.15rem);
         font-weight: 600;
         letter-spacing: -0.025em;
       }
 
-      .arrow {
-        margin-top: 22px;
-        color: var(--otter);
-        font-size: 1.4rem;
-        transition: transform 180ms ease;
-      }
-
-      .app-card:hover .arrow {
-        transform: translateX(4px);
-      }
-
       .app-description {
         margin: 0;
-        color: var(--muted);
+        color: var(--card-muted);
         line-height: 1.55;
+      }
+
+      .app-card--table .app-copy {
+        max-width: 75%;
+      }
+
+      .progress-motif {
+        width: 130px;
+        height: 66px;
+        position: absolute;
+        right: 25px;
+        top: 90px;
+        display: flex;
+        align-items: end;
+        gap: 7px;
+        padding: 12px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.12);
+        transform: rotate(-3deg);
+      }
+
+      .progress-motif span {
+        width: 100%;
+        height: var(--height);
+        display: block;
+        background: var(--card-accent);
+        border-radius: 5px 5px 2px 2px;
+        opacity: var(--opacity, 0.38);
       }
 
       footer {
@@ -232,7 +310,7 @@
 
       @media (min-width: 760px) {
         .apps {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .app-card {
@@ -255,8 +333,15 @@
         }
 
         .app-card {
-          min-height: 200px;
+          min-height: 270px;
           padding: 23px;
+        }
+
+        .progress-motif {
+          right: 20px;
+          top: 78px;
+          transform: scale(0.9) rotate(-3deg);
+          transform-origin: top right;
         }
       }
 
@@ -288,7 +373,7 @@
 
         <nav class="apps" aria-label="Aplicaciones">
           <!-- Para añadir otra plataforma, duplica este enlace y cambia icono, texto y destino. -->
-          <a class="app-card" href="/alamesa/">
+          <a class="app-card app-card--table" href="/alamesa/">
             <span class="app-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <path d="M7 3v7" />
@@ -299,9 +384,9 @@
               </svg>
             </span>
             <span class="app-copy">
+              <span class="app-kicker">Planifica · Cocina · Compra</span>
               <span class="app-title-row">
                 <span class="app-title">A la mesa</span>
-                <span class="arrow" aria-hidden="true">→</span>
               </span>
               <span class="app-description">Menús, recetas y lista de la compra.</span>
             </span>
@@ -319,10 +404,16 @@
                 <path d="M20.5 12H22" />
               </svg>
             </span>
+            <span class="progress-motif" aria-hidden="true">
+              <span style="--height: 34%; --opacity: 0.26"></span>
+              <span style="--height: 54%; --opacity: 0.38"></span>
+              <span style="--height: 76%; --opacity: 0.55"></span>
+              <span style="--height: 100%; --opacity: 0.9"></span>
+            </span>
             <span class="app-copy">
+              <span class="app-kicker">Entrena · Registra · Supera</span>
               <span class="app-title-row">
                 <span class="app-title">GymTracker</span>
-                <span class="arrow" aria-hidden="true">→</span>
               </span>
               <span class="app-description">Entrenamientos, rutinas y progreso.</span>
             </span>
