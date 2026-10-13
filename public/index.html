@@ -241,6 +241,33 @@
         z-index: -1;
       }
 
+      .app-card--savings {
+        --card-ink: #f5fbff;
+        --card-muted: rgba(225, 239, 244, 0.7);
+        --card-accent: #6ee7b7;
+        background:
+          linear-gradient(rgba(110, 231, 183, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(110, 231, 183, 0.055) 1px, transparent 1px),
+          linear-gradient(135deg, #102b3a 0%, #071b28 58%, #102f33 100%);
+        background-size: 28px 28px, 28px 28px, auto;
+        border-color: rgba(110, 231, 183, 0.2);
+      }
+
+      .app-card--savings::after {
+        content: "";
+        width: 320px;
+        height: 320px;
+        position: absolute;
+        right: -110px;
+        top: -150px;
+        border: 1px solid rgba(110, 231, 183, 0.16);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 46px rgba(110, 231, 183, 0.025),
+          0 0 0 92px rgba(110, 231, 183, 0.018);
+        z-index: -1;
+      }
+
       .app-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 28px 80px rgba(18, 63, 70, 0.17);
@@ -260,6 +287,10 @@
 
       .app-card--contributions:hover {
         border-color: rgba(47, 125, 91, 0.46);
+      }
+
+      .app-card--savings:hover {
+        border-color: rgba(110, 231, 183, 0.52);
       }
 
       .app-card:focus-visible {
@@ -295,6 +326,12 @@
       .app-card--contributions .app-icon {
         background: var(--card-accent);
         box-shadow: 0 10px 28px rgba(47, 125, 91, 0.22);
+      }
+
+      .app-card--savings .app-icon {
+        color: #08231f;
+        background: var(--card-accent);
+        box-shadow: 0 10px 28px rgba(110, 231, 183, 0.2);
       }
 
       .app-icon svg {
@@ -412,6 +449,61 @@
         stroke-width: 2;
       }
 
+      .market-motif {
+        width: min(47%, 420px);
+        height: 132px;
+        position: absolute;
+        right: 30px;
+        top: 45px;
+        padding: 16px 18px 14px;
+        border: 1px solid rgba(110, 231, 183, 0.14);
+        border-radius: 18px;
+        background: rgba(2, 14, 22, 0.36);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .market-ticker {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(225, 239, 244, 0.55);
+        font-size: 0.66rem;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .market-value {
+        color: var(--card-accent);
+        letter-spacing: 0;
+      }
+
+      .market-motif svg {
+        width: 100%;
+        height: 75px;
+        margin-top: 7px;
+        overflow: visible;
+        fill: none;
+        stroke: var(--card-accent);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .market-motif .market-area {
+        fill: url(#savings-gradient);
+        stroke: none;
+      }
+
+      .market-motif .market-line {
+        stroke-width: 2.4;
+      }
+
+      .market-motif .market-guide {
+        stroke: rgba(225, 239, 244, 0.12);
+        stroke-dasharray: 3 5;
+        stroke-width: 1;
+      }
+
       footer {
         padding-top: 26px;
         border-top: 1px solid var(--line);
@@ -426,6 +518,10 @@
 
         .app-card {
           grid-column: span 1;
+        }
+
+        .app-card--savings {
+          grid-column: 1 / -1;
         }
       }
 
@@ -473,6 +569,27 @@
           top: 58px;
           transform: scale(0.9);
           transform-origin: top right;
+        }
+
+        .market-motif {
+          width: 150px;
+          height: 76px;
+          right: 18px;
+          top: 71px;
+          padding: 10px 12px;
+        }
+
+        .market-ticker {
+          font-size: 0.56rem;
+        }
+
+        .market-ticker span:first-child {
+          display: none;
+        }
+
+        .market-motif svg {
+          height: 36px;
+          margin-top: 5px;
         }
       }
 
@@ -606,6 +723,42 @@
                 <span class="app-title">Aportes comunes</span>
               </span>
               <span class="app-description">Finanzas familiares, claras y en común.</span>
+            </span>
+          </a>
+
+          <a class="app-card app-card--savings" href="/cuentasyahorro/">
+            <span class="app-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 19V9" />
+                <path d="M10 19v-6" />
+                <path d="M16 19V7" />
+                <path d="M3 5.5 8.5 8l5-4 7.5 2" />
+                <path d="m18.5 3.5 2.5 2-2 2.5" />
+              </svg>
+            </span>
+            <span class="market-motif" aria-hidden="true">
+              <span class="market-ticker">
+                <span>Ahorro proyectado</span>
+                <span class="market-value">+4,25%</span>
+              </span>
+              <svg viewBox="0 0 380 75" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="savings-gradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#6ee7b7" stop-opacity=".24" />
+                    <stop offset="1" stop-color="#6ee7b7" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <path class="market-guide" d="M0 18h380M0 52h380" />
+                <path class="market-area" d="M0 63 38 58 73 61 108 45 145 49 180 33 215 38 250 22 290 27 330 10 380 5v70H0Z" />
+                <path class="market-line" d="M0 63 38 58 73 61 108 45 145 49 180 33 215 38 250 22 290 27 330 10 380 5" />
+              </svg>
+            </span>
+            <span class="app-copy">
+              <span class="app-kicker">Cotiza · Compara · Ahorra</span>
+              <span class="app-title-row">
+                <span class="app-title">Cuentas y ahorro</span>
+              </span>
+              <span class="app-description">Cuentas remuneradas, depósitos y cotizaciones al día.</span>
             </span>
           </a>
         </nav>
