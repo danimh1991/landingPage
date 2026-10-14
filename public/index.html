@@ -253,6 +253,32 @@
         border-color: rgba(110, 231, 183, 0.2);
       }
 
+      .app-card--invoices {
+        --card-ink: #40382f;
+        --card-muted: #756b60;
+        --card-accent: #b15f46;
+        background:
+          linear-gradient(rgba(177, 95, 70, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(177, 95, 70, 0.045) 1px, transparent 1px),
+          linear-gradient(145deg, #fffdf7 0%, #f3e7d9 100%);
+        background-size: 25px 25px, 25px 25px, auto;
+        border-color: rgba(177, 95, 70, 0.2);
+      }
+
+      .app-card--invoices::after {
+        content: "";
+        width: 180px;
+        height: 180px;
+        position: absolute;
+        right: -42px;
+        top: -48px;
+        border: 24px solid rgba(255, 255, 255, 0.58);
+        border-radius: 50%;
+        background: rgba(224, 183, 125, 0.14);
+        box-shadow: 0 0 0 2px rgba(177, 95, 70, 0.1);
+        z-index: -1;
+      }
+
       .app-card--savings::after {
         content: "";
         width: 320px;
@@ -291,6 +317,10 @@
 
       .app-card--savings:hover {
         border-color: rgba(110, 231, 183, 0.52);
+      }
+
+      .app-card--invoices:hover {
+        border-color: rgba(177, 95, 70, 0.46);
       }
 
       .app-card:focus-visible {
@@ -332,6 +362,11 @@
         color: #08231f;
         background: var(--card-accent);
         box-shadow: 0 10px 28px rgba(110, 231, 183, 0.2);
+      }
+
+      .app-card--invoices .app-icon {
+        background: var(--card-accent);
+        box-shadow: 0 10px 28px rgba(177, 95, 70, 0.2);
       }
 
       .app-icon svg {
@@ -504,6 +539,27 @@
         stroke-width: 1;
       }
 
+      .invoice-motif {
+        width: 132px;
+        height: 92px;
+        position: absolute;
+        right: 27px;
+        top: 69px;
+        color: var(--card-accent);
+        opacity: 0.48;
+        transform: rotate(3deg);
+      }
+
+      .invoice-motif svg {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.8;
+      }
+
       footer {
         padding-top: 26px;
         border-top: 1px solid var(--line);
@@ -520,9 +576,6 @@
           grid-column: span 1;
         }
 
-        .app-card--savings {
-          grid-column: 1 / -1;
-        }
       }
 
       @media (min-width: 980px) {
@@ -590,6 +643,13 @@
         .market-motif svg {
           height: 36px;
           margin-top: 5px;
+        }
+
+        .invoice-motif {
+          right: 18px;
+          top: 62px;
+          transform: scale(0.9) rotate(3deg);
+          transform-origin: top right;
         }
       }
 
@@ -759,6 +819,33 @@
                 <span class="app-title">Cuentas y ahorro</span>
               </span>
               <span class="app-description">Cuentas remuneradas, depósitos y cotizaciones al día.</span>
+            </span>
+          </a>
+
+          <a class="app-card app-card--invoices" href="/facturas">
+            <span class="app-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M6 3h9l3 3v15H6Z" />
+                <path d="M14 3v4h4" />
+                <path d="M9 11h6" />
+                <path d="M9 15h4" />
+              </svg>
+            </span>
+            <span class="invoice-motif" aria-hidden="true">
+              <svg viewBox="0 0 132 92">
+                <path d="M24 8h64l20 20v56H24Z" fill="currentColor" opacity=".08" />
+                <path d="M88 8v20h20" />
+                <path d="M40 39h51M40 51h42M40 63h31" />
+                <path d="M80 70h12" />
+                <circle cx="24" cy="8" r="5" fill="currentColor" stroke="none" />
+              </svg>
+            </span>
+            <span class="app-copy">
+              <span class="app-kicker">Guarda · Revisa · Encuentra</span>
+              <span class="app-title-row">
+                <span class="app-title">Facturas</span>
+              </span>
+              <span class="app-description">Las facturas de casa, ordenadas y siempre a mano.</span>
             </span>
           </a>
         </nav>
